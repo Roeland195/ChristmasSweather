@@ -1,0 +1,16 @@
+.float-container{
+ margin: 0 20%;
+    section{
+        margin: 30px;
+        text-align: center;
+    }
+    .image-container{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .card-container{
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+    }
+}
