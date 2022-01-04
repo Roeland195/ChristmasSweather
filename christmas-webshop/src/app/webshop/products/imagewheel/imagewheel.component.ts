@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,Input, OnInit } from '@angular/core';
+import {ProductModel} from "../product.model";
 
 @Component({
   selector: 'app-imagewheel',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./imagewheel.component.scss']
 })
 export class ImagewheelComponent implements OnInit {
+  @Input() product : ProductModel;
 
-  constructor() { }
+  constructor() {
+    this.product = new ProductModel();
+  }
 
   ngOnInit(): void {
   }
-
 }
