@@ -1,0 +1,21 @@
+.product-container{
+    background-color: red;
+    margin: 0 15%;
+    display: flex;
+        flex-wrap: wrap;
+        .searchbar-left{
+            width: 22%;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        .product-child{
+            width: 78%;
+            padding: 10px;
+            background-color: lightgreen;
+
+            .card-container{
+                display: grid;
+                grid-template-columns: auto auto auto;
+            }
+        }
+}
