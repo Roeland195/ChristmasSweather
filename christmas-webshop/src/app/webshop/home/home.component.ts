@@ -8,23 +8,21 @@ import {productService} from "../products/product.service";
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  public products: Array<{product: ProductModel}>;
+  products: ProductModel[] = [];
 
-  constructor(private http: productService) {
-    this.products = new Array<{product: ProductModel}>();
-
-    this.http.getAllProducts((data: ProductModel[])=>{
-      this.fillProductArray(data);
-      console.log("DATA: "+ data)
-    });
+  constructor(private ProductService: productService) {
   }
 
   ngOnInit(): void {
+    this.ProductService.getAllProducts((data: ProductModel[])=>{
+      this.fillProductArray(data);
+      this.products = this.ProductService.products;
+    });
   }
 
   private fillProductArray(data: ProductModel[]) : void {
     data.forEach((product)=>{
-      this.products.push({product: product});
+      this.ProductService.pushProduct(product);
     });
   }
 }

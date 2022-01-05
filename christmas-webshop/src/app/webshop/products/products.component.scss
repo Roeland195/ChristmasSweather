@@ -1,5 +1,4 @@
 .product-container{
-    background-color: red;
     margin: 0 15%;
     display: flex;
         flex-wrap: wrap;
@@ -11,7 +10,6 @@
         .product-child{
             width: 78%;
             padding: 10px;
-            background-color: lightgreen;
 
             .card-container{
                 display: grid;
