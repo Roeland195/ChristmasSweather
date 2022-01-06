@@ -6,11 +6,11 @@
     }
     .image-container{
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto auto auto auto;
     }
 
     .card-container{
         display: grid;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: auto auto auto;
     }
 }

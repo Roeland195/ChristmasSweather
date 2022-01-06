@@ -7,16 +7,30 @@ import {ProductModel} from "./product.model";
 })
 export class productService{
   products: ProductModel[] = [];
+  selectedProduct : ProductModel = new ProductModel;
 
   constructor(private http: HttpSercive) { }
 
   getAllProducts(implementation: (data: ProductModel[]) => void) : void{
     this.products = [];
-    let parameters = new Map<string, string>();
-    this.http.get<ProductModel[]>("/Product", parameters, implementation);
+    this.http.get<ProductModel[]>("/Product", implementation);
+  }
+
+  addToShoppingCart(product: ProductModel) : void{
+    console.log("HERE");
+    
+    this.http.post("/Wishlist", product, (data) =>{
+      console.log("DATA: "+data);
+    });
   }
 
   pushProduct(product: ProductModel){
     this.products.push(product);
+  }
+
+  setSelectedProduct(product: ProductModel){    
+    this.selectedProduct = product;
+    console.log("SELECTED PRODUCT: "+this.selectedProduct);
+    
   }
 }

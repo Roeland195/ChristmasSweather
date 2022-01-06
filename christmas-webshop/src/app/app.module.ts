@@ -15,6 +15,7 @@ import { ProductwheelComponent } from './webshop/products/productwheel/productwh
 import { ImagewheelComponent } from './webshop/products/imagewheel/imagewheel.component';
 import {productService} from "./webshop/products/product.service";
 import {FormsModule} from "@angular/forms";
+import { IconsComponent } from './icons/icons.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     SearchbarComponent,
     ProductwheelComponent,
-    ImagewheelComponent
+    ImagewheelComponent,
+    IconsComponent
   ],
   imports: [
     BrowserModule,
