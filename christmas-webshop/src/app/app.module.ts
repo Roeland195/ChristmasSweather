@@ -16,6 +16,9 @@ import { ImagewheelComponent } from './webshop/products/imagewheel/imagewheel.co
 import {productService} from "./webshop/products/product.service";
 import {FormsModule} from "@angular/forms";
 import { IconsComponent } from './icons/icons.component';
+import { AuthenticationComponent } from './webshop/authentication/authentication.component';
+import { LoginComponent } from './webshop/authentication/login/login.component';
+import { RegisterComponent } from './webshop/authentication/register/register.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,10 @@ import { IconsComponent } from './icons/icons.component';
     SearchbarComponent,
     ProductwheelComponent,
     ImagewheelComponent,
-    IconsComponent
+    IconsComponent,
+    AuthenticationComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
