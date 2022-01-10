@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-searchbar',
@@ -10,6 +11,9 @@ export class SearchbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  submit(form: NgForm){
   }
 
 }

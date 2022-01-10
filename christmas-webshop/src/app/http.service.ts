@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from './HttpResponse';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { ProductModel } from './webshop/products/product.model';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { ProductModel } from './webshop/products/product.model';
 })
 export class HttpSercive{
     public static readonly RESPONSE_SUCCESS_CODE ="SUCCES";
+    private authenticated = false;
 
     private url: string = "http://localhost:8080";
     private http : HttpClient;
@@ -26,6 +27,23 @@ export class HttpSercive{
         this.http.post<HttpResponse<T>>(this.url + endpoint, body).subscribe((response) =>{
             HttpSercive.callImplementation<T>(response, implementation);
         });
+    }
+
+    authenticate(credentials: { email: string; password: string; }, callback: () => any) {
+
+        const headers = new HttpHeaders(credentials ? {
+            authorization : 'Basic ' + btoa(credentials.email + ':' + credentials.password)
+        } : {});
+    
+        this.http.get('user', {headers: headers}).subscribe(response => {
+            if (response.valueOf.name) {
+                this.authenticated = true;
+            } else {
+                this.authenticated = false;
+            }
+            return callback && callback();
+        });
+    
     }
 
 

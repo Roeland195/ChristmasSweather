@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { authenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -9,14 +10,18 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('form') loginForm!: NgForm;
+  credential = {email: '', password: ''};
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private auth: authenticationService) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(Form: NgForm){
-    
+  login(Form: NgForm){
+    this.credential.email = Form.value.email;
+    this.credential.password = Form.value.password;
+
+    this.auth.authenticate(this.credential);
   }
 
   onRegister(){
