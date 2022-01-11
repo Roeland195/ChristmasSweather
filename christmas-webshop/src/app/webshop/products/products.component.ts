@@ -22,7 +22,8 @@ export class ProductsComponent implements OnInit {
   private fillProductArray(data: ProductModel[]) : void {
     data.forEach((product)=>{
       this.ProductService.pushProduct(product);
+      this.ProductService.color.push(product.color);
+      this.ProductService.size.push(product.size);
     });
   }
-
 }

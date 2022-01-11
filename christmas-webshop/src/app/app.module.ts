@@ -16,9 +16,14 @@ import { ImagewheelComponent } from './webshop/products/imagewheel/imagewheel.co
 import {productService} from "./webshop/products/product.service";
 import {FormsModule} from "@angular/forms";
 import { IconsComponent } from './icons/icons.component';
-import { AuthenticationComponent } from './webshop/authentication/authentication.component';
-import { LoginComponent } from './webshop/authentication/login/login.component';
-import { RegisterComponent } from './webshop/authentication/register/register.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { AdminComponent } from './admin/admin.component';
+import { OverviewComponent } from './admin/overview/overview.component';
+import { AddProductComponent } from './admin/add-product/add-product.component';
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { AdminService } from './admin/Admin.Service';
 
 @NgModule({
   declarations: [
@@ -35,7 +40,11 @@ import { RegisterComponent } from './webshop/authentication/register/register.co
     IconsComponent,
     AuthenticationComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AdminComponent,
+    OverviewComponent,
+    AddProductComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,7 @@ import { RegisterComponent } from './webshop/authentication/register/register.co
     HttpClientModule,
     FormsModule
   ],
-  providers: [productService],
+  providers: [productService, AdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

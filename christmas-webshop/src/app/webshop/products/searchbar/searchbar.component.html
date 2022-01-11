@@ -1,54 +1,33 @@
 <form (ngSubmit)="submit(form)" #form="ngForm">
+    <button class="btn btn-primary" type="submit">Filter</button>
+    <button class="btn btn-primary" (click)="clearFilter()" type="button">Leeg Filter</button>
+    <!-- Thema -->
+    <hr>
     <label for="theme">Thema:</label>
     <br>
-    <input type="text" name="name">
-
+    <input  ngModel type="text" name="thema">
+    <!-- Totaal -->
     <hr>
     <label for="Price">Total:</label>
-    <input type="range" name="price" min="0" max="100">
-
+    <input  ngModel type="range" name="price" min="0" max="100">
+    <!-- Maat -->
     <hr>
     <label for="size">Maat:</label><br>
-
-    <!-- LOOP -->
-
-    <input type="checkbox" id="S" name="size" value="S">
-    <label for="size"> S</label><br>
-
-    <input type="checkbox" id="M" name="size" value="M">
-    <label for="size"> M</label><br>
-
-    <input type="checkbox" id="L" name="size" value="L">
-    <label for="size"> L</label><br>
-
-    <input type="checkbox" id="XL" name="size" value="XL">
-    <label for="size"> XL</label><br>
-
+    <div *ngFor="let maat of size">
+        <input (click)="sizeChecker($event)" class="size" ngModel type="checkbox" id="{{maat}}" name="size" value="{{maat}}">
+        <label for="size"> {{maat}}</label><br>
+    </div>
+    <!-- Beschikbaar -->
     <hr>
     <label for="avalable">Beschikbaar:</label><br>
-    <input type="radio" id="avalable" name="avalable" value="true">
+    <input ngModel type="checkbox" id="avalable" name="avalable" value="true">
     <label for="avalable">Ja</label><br>
-
+    <!-- Geslacht -->
     <hr>
     <label for="sex">Geslacht:</label><br>
-    <input type="checkbox" id="sex" name="sex" value="man">
+    <input (click)="sexChecker($event)" ngModel type="checkbox" id="sex" name="sex" value="man">
     <label for="sex"> Man</label><br>
 
-    <input type="checkbox" id="sex" name="sex" value="vrouw">
+    <input (click)="sexChecker($event)" ngModel type="checkbox" id="sex" name="sex" value="vrouw">
     <label for="sex"> Vrouw</label><br>
-
-    <hr>
-    <label for="color">Kleur:</label><br>
-    <!-- LOOP -->
-    <input type="checkbox" id="color" name="color" value="Groen">
-    <label for="color"> Groen</label><br>
-
-    <input type="checkbox" id="color" name="color" value="Rood">
-    <label for="color"> Rood</label><br>
-
-    <input type="checkbox" id="color" name="color" value="Blauw">
-    <label for="color"> Blauw</label><br>
-
-    <input type="checkbox" id="color" name="color" value="Geel">
-    <label for="color"> Geel</label><br>
 </form>

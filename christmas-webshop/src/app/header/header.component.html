@@ -1,4 +1,4 @@
-<nav>
+<nav *ngIf='!onAdmin'>
     <div class="logo">
         <a routerLink="/">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDxMs92k-SF3VF404U2NcJHk8_yZwCDIqJNg&usqp=CAU" 
@@ -14,3 +14,20 @@
         </ul>
     </div>
 </nav>
+
+<nav *ngIf='onAdmin'>
+    <div class="logo">
+        <a routerLink="/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDxMs92k-SF3VF404U2NcJHk8_yZwCDIqJNg&usqp=CAU" 
+        alt="LOGO VAN KERST TRUI"></a>
+    </div>
+
+    <div class="navbar-container">
+         <ul>
+            <li routerLinkActive="active"><a routerLink="admin/new">Add new</a></li>
+            <li routerLinkActive="active"><a routerLink="admin/edit">Producten</a></li>
+            <li><a (click)="logout()">Uitloggen</a></li>
+        </ul>
+    </div>
+</nav>
+

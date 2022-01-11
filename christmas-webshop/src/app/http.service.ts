@@ -19,7 +19,7 @@ export class HttpSercive{
 
     public get<T>(endpoint : string, implementation : (data : T) => void){
         this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) =>{
-            HttpSercive.callImplementation<T>(response, implementation);
+            HttpSercive.callImplementation<T>(response, implementation);        
         });
     }
 

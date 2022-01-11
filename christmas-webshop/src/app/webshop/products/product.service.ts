@@ -6,12 +6,18 @@ import {ProductModel} from "./product.model";
   providedIn: 'root'
 })
 export class productService{
+  allProducts: ProductModel[] = [];
   products: ProductModel[] = [];
+  size: string[] = [];
+  color: string[] = [];
+
+
   selectedProduct : ProductModel = new ProductModel;
 
   constructor(private http: HttpSercive) { }
 
   getAllProducts(implementation: (data: ProductModel[]) => void) : void{
+    this.allProducts = [];
     this.products = [];
     this.http.get<ProductModel[]>("/Product", implementation);
   }
@@ -25,6 +31,7 @@ export class productService{
   }
 
   pushProduct(product: ProductModel){
+    this.allProducts.push(product);
     this.products.push(product);
   }
 
