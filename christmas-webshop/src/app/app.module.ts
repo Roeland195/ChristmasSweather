@@ -14,7 +14,7 @@ import { SearchbarComponent } from './webshop/products/searchbar/searchbar.compo
 import { ProductwheelComponent } from './webshop/products/productwheel/productwheel.component';
 import { ImagewheelComponent } from './webshop/products/imagewheel/imagewheel.component';
 import {productService} from "./webshop/products/product.service";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { IconsComponent } from './icons/icons.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { LoginComponent } from './authentication/login/login.component';
@@ -50,7 +50,8 @@ import { AdminService } from './admin/Admin.Service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [productService, AdminService],
   bootstrap: [AppComponent]

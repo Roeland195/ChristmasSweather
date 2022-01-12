@@ -7,7 +7,7 @@ import { ProductModel } from './webshop/products/product.model';
     providedIn: 'root'
 })
 export class HttpSercive{
-    public static readonly RESPONSE_SUCCESS_CODE ="SUCCES";
+    public static readonly RESPONSE_SUCCESS_CODE ="SUCCESS";
     private authenticated = false;
 
     private url: string = "http://localhost:8080";
@@ -21,6 +21,10 @@ export class HttpSercive{
         this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) =>{
             HttpSercive.callImplementation<T>(response, implementation);        
         });
+    }
+
+    public getall<T>(endpoint : string){
+        return this.http.get<HttpResponse<T>>(this.url+endpoint);
     }
 
     public post<T>(endpoint: string, body: T, implementation : (data: T) => void){
@@ -69,7 +73,7 @@ export class HttpSercive{
       }
 
       private static onError(message : string) {
-          console.log("SENDING HAS BEEN A FAILLUAR");
+          console.log("SENDING HAS FAILED");
           
       }
 
