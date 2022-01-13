@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ProductService.getAllProducts((data: ProductModel[])=>{
+    this.ProductService.getAllProducts('',(data: ProductModel[])=>{
       this.fillProductArray(data);
       this.products = this.ProductService.products;
 

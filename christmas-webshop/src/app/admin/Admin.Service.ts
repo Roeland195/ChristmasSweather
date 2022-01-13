@@ -13,13 +13,17 @@ export class AdminService{
     
   }
 
-  addAdmin(product: ProductModel, implementation : (data : ProductModel[]) => void){
+  updateProduct(product:ProductModel, implementation : (data : ProductModel[]) => void){
+    this.http.put<ProductModel[]>('/Product', [product, product], implementation);
+  }
+
+  addProduct(product: ProductModel, implementation : (data : ProductModel[]) => void){
     product.avalable = true;
     this.products.push(product);
 
     console.log(this.products);
     
-    this.http.post<ProductModel[]>('/Product', this.products, implementation);
+    this.http.post<ProductModel[]>('/Product', [product, product], implementation);
   }
 
 

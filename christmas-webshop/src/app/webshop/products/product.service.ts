@@ -16,7 +16,7 @@ export class productService{
 
   constructor(private http: HttpSercive) { }
 
-  getAllProducts(implementation: (data: ProductModel[]) => void) : void{
+  getAllProducts(extra: string ,implementation: (data: ProductModel[]) => void) : void{
     this.allProducts = [];
     this.products = [];
     this.http.get<ProductModel[]>("/Product", implementation);

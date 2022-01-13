@@ -1,3 +1,9 @@
-<div>
-    <router-outlet></router-outlet>
+<div class="float-container">
+    <section>
+        <app-overview *ngFor="let product of products"
+        [product]="product"></app-overview>
+    </section>
+    <section>
+        <router-outlet></router-outlet>
+    </section>
 </div>

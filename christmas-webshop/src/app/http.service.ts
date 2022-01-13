@@ -33,6 +33,12 @@ export class HttpSercive{
         });
     }
 
+    public put<T>(endpoint : string, body : T, implementation : (data : T) => void) {
+        this.http.put<HttpResponse<T>>(this.url + endpoint, body).subscribe((response) => {
+          HttpSercive.callImplementation<T>(response, implementation);
+        });
+      }
+
     authenticate(credentials: { email: string; password: string; }, callback: () => any) {
 
         const headers = new HttpHeaders(credentials ? {

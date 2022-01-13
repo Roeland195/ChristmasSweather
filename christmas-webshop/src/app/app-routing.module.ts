@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { OverviewComponent } from './admin/overview/overview.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
@@ -25,8 +26,10 @@ export const routes: Routes = [
   ]},
 
   {path: 'admin', component: AdminComponent, children:[
+    {path: '', component: EditProductComponent},
     {path: 'edit', component: EditProductComponent},
-    {path: 'new', component: AddProductComponent},
+    {path: ':id/edit', component: EditProductComponent},
+    {path: 'new', component: EditProductComponent},
   ]}
 ];
 

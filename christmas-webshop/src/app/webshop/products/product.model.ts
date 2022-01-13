@@ -1,5 +1,3 @@
-import {themeModel} from "./theme.model";
-
 export class ProductModel{
   id: string;
   name: string;
@@ -11,8 +9,6 @@ export class ProductModel{
   image: string;
   sex: string;
   size: string;
-  theme: themeModel;
-
 
   constructor() {
     this.id = '';
@@ -25,6 +21,5 @@ export class ProductModel{
     this.image = '';
     this.sex = '';
     this.size = '';
-    this.theme = new themeModel();
   }
 }
