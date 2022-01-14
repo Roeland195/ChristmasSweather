@@ -17,6 +17,10 @@ export class AdminService{
     this.http.put<ProductModel[]>('/Product', [product, product], implementation);
   }
 
+  deleteProduct(product:ProductModel, implementation :(data : ProductModel[]) =>void){
+    this.http.delete<ProductModel[]>('/Product', [product, product], implementation);
+  }
+
   addProduct(product: ProductModel, implementation : (data : ProductModel[]) => void){
     product.avalable = true;
     this.products.push(product);

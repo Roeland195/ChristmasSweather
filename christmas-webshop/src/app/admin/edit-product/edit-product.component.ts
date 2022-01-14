@@ -56,6 +56,10 @@ export class EditProductComponent implements OnInit {
           productColor = this.editProduct.color;
           productSex = this.editProduct.sex;
           productSize = this.editProduct.size;
+          if(this.editProduct.image !== null){
+            this.productImage = this.editProduct.image
+          }else{this.productImage = 'https://cdn.pixabay.com/photo/2012/04/02/13/51/cardboard-box-24547_1280.png';}
+          
         }
       });
     }
@@ -87,5 +91,11 @@ export class EditProductComponent implements OnInit {
     }else{
     this.adminService.addProduct(this.productForm.value,() =>{});
     }
+  }
+
+  onDelete(){
+    console.log("ERROR");
+    
+    this.adminService.deleteProduct(this.editProduct,() =>{});
   }
 }

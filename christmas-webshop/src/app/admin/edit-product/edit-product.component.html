@@ -71,10 +71,11 @@
         </section>
         <section class="form-child">
             <div>
-                <img src="https://cdn.pixabay.com/photo/2012/04/02/13/51/cardboard-box-24547_1280.png" alt="ther is nothing">
+                <img src="{{productImage}}" alt="ther is nothing">
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Maak Product!</button>
+                <button type="button" (click)="onDelete()" class="btn btn-primary">Delete Product!</button>
             </div>
 
         </section>

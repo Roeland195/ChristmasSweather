@@ -39,6 +39,14 @@ export class HttpSercive{
         });
       }
 
+    public delete<T>(endpoint : string, body : T, implementation : (data : T) => void) {
+        console.log(body);
+        
+        this.http.delete<HttpResponse<T>>(this.url + endpoint, {body: body}).subscribe((response) => {
+            HttpSercive.callImplementation<T>(response, implementation);
+        });
+      }
+
     authenticate(credentials: { email: string; password: string; }, callback: () => any) {
 
         const headers = new HttpHeaders(credentials ? {
