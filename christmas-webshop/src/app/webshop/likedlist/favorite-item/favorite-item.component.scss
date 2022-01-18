@@ -1,0 +1,25 @@
+section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid gray;
+    text-align: left;
+    padding: 4em;
+    .imageHolder{
+        img{
+            height: 200px;
+        }
+    }
+    h3{
+        width: 100%;
+    }
+    .buttonHolder{
+        text-align: right;
+        padding-top: 50%;
+        button{
+            width: 4em;
+        }
+        img{
+            width: 3.5em;
+        }
+    }
+}

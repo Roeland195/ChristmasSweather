@@ -3,23 +3,21 @@ import { ProductModel } from '../products/product.model';
 import { productService } from '../products/product.service';
 
 @Component({
-  selector: 'app-shoplist',
-  templateUrl: './shoplist.component.html',
-  styleUrls: ['./shoplist.component.scss']
+  selector: 'app-likedlist',
+  templateUrl: './likedlist.component.html',
+  styleUrls: ['./likedlist.component.scss']
 })
-export class ShoplistComponent implements OnInit, OnDestroy {
-  shoppingCartProducts: ProductModel[] = [];
+export class LikedlistComponent implements OnInit, OnDestroy {
+  LikedProducts : ProductModel[] = [];
 
   constructor(private productService: productService) { }
 
   ngOnInit(): void {
     this.productService.getCookies();
-    this.shoppingCartProducts = this.productService.cookieProductShoppingCart;
+    this.LikedProducts = this.productService.cookieProductWishList;
   }
 
   ngOnDestroy(): void {
     this.productService.setCookies();
-
-    this.productService.addToShoppingCart();
   }
 }

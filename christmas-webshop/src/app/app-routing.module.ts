@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AdminComponent } from './admin/admin.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { OverviewComponent } from './admin/overview/overview.component';
@@ -8,6 +7,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { HomeComponent } from './webshop/home/home.component';
+import { LikedlistComponent } from './webshop/likedlist/likedlist.component';
 import { ProductComponent } from './webshop/products/product/product.component';
 import { ProductsComponent } from './webshop/products/products.component';
 import { ShoplistComponent } from './webshop/shoplist/shoplist.component';
@@ -18,6 +18,7 @@ export const routes: Routes = [
   {path: 'products', component: ProductsComponent},
   {path: 'product/:name', component: ProductComponent},
   {path: 'shoplist', component: ShoplistComponent},
+  {path: 'favorite', component: LikedlistComponent},
 
   {path: 'auth', component: AuthenticationComponent, children:[
     {path: '', redirectTo: 'login', pathMatch: 'full'},

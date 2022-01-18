@@ -7,9 +7,10 @@ export class UserModel{
     city: string;
     street: string;
     number: number;
-    extra: string;
+    extra: string;    
 
-    constructor(){
+    constructor(
+    ){
       this.id = '';
       this.name = '';
       this.password = '';
@@ -18,6 +19,6 @@ export class UserModel{
       this.country = '';
       this. street = '';
       this.number = 0;
-      this.extra = '';  
+      this.extra = '';       
     }
 }

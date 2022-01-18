@@ -21,9 +21,12 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { AdminComponent } from './admin/admin.component';
 import { OverviewComponent } from './admin/overview/overview.component';
-import { AddProductComponent } from './admin/add-product/add-product.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { AdminService } from './admin/Admin.Service';
+import { CookieService } from 'ngx-cookie-service';
+import { ShoppingCartItemComponent } from './webshop/shoplist/shopping-cart-item/shopping-cart-item.component';
+import { FavoriteItemComponent } from './webshop/likedlist/favorite-item/favorite-item.component';
+import { LikedlistComponent } from './webshop/likedlist/likedlist.component';
 
 @NgModule({
   declarations: [
@@ -43,8 +46,10 @@ import { AdminService } from './admin/Admin.Service';
     RegisterComponent,
     AdminComponent,
     OverviewComponent,
-    AddProductComponent,
     EditProductComponent,
+    ShoppingCartItemComponent,
+    FavoriteItemComponent,
+    LikedlistComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +58,7 @@ import { AdminService } from './admin/Admin.Service';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [productService, AdminService],
+  providers: [productService, AdminService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

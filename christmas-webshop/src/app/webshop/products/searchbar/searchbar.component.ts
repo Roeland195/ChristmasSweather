@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, NgForm } from '@angular/forms';
+import { EMPTY, empty, isEmpty } from 'rxjs';
+import { ProductModel } from '../product.model';
 import { productService } from '../product.service';
 
 @Component({
@@ -8,13 +10,12 @@ import { productService } from '../product.service';
   styleUrls: ['./searchbar.component.scss']
 })
 export class SearchbarComponent implements OnInit {
-  filterSearch: string[] =[];
-  checkbox: string[]=[];
+  productHolder: ProductModel[] =[];
+
   size: string[] =[];
 
-  theme: string = '';
+  checkbox: string[]=[];
   sex: string[]=[];
-  avalable = false;
 
   constructor(private productService: productService) { }
 
@@ -23,25 +24,47 @@ export class SearchbarComponent implements OnInit {
   }
 
   submit(form: NgForm){
+    console.log(form.value.avalable);
+    this.productHolder = [];
     this.productService.products = [];
-    this.filterSearch = [];
-    this.theme = form.value.thema;
-    this.filterSearch.push(form.value.price);
-    this.filterSearch.push(form.value.avalable);
-    for(let i = 0; i < this.checkbox.length; i++){
-      this.filterSearch.push(this.checkbox[i]);
-    }
-
+ 
     this.setFilterdProducts();
+    this.productService.productsListChanged.next(!this.productService.productsListChanged);
   }
 
   setFilterdProducts(){
-    this.productService.allProducts.forEach(function (value){
-
+    this.productService.allProducts.forEach((value)=>{
+      if(this.checkbox.length > 0 && this.sex.length > 0){
+        if(this.checkbox.length > 0){
+          this.checkbox.forEach((checkboxValue)=>{
+            if(checkboxValue === value.size.toUpperCase()){
+              this.productHolder.push(value);
+            }
+          });
+        }
+      }else{
+        this.productHolder.push(value);
+      }
     });
+
+    this.productService.products = this.productHolder;
+    console.log(this.productService.products);  
   }
 
-  sizeChecker(event: any){
+  checkBoxFilter(event: any){
+    console.log(event.target.value);
+    
+    if(event.target.value === 'man' || event.target.value ==='woman'){
+      if(event.target.checked){
+        this.sex.push(event.target.value);
+      }else{
+        this.sex.forEach((sex, index)=>{
+          if(sex === event.target.value){
+            this.sex.splice(index,1);
+          }
+        });
+      } 
+  }else{
     if(event.target.checked){
       this.checkbox.push(event.target.value);
     }else{
@@ -52,12 +75,11 @@ export class SearchbarComponent implements OnInit {
       });
     } 
   }
-
-  sexChecker(event: any){
   }
 
+
   clearFilter(){
-    this.filterSearch = [];
     this.productService.products = this.productService.allProducts;
+    this.productService.productsListChanged.next(!this.productService.productsListChanged);
   }
 }

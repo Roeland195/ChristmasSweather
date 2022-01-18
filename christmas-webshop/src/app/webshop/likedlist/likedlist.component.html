@@ -1,0 +1,10 @@
+<div class="container">
+    <app-favorite-item *ngFor="let product of LikedProducts"
+    [product]="product"></app-favorite-item>
+</div>
+
+<div *ngIf="LikedProducts.length === 0">
+    <div class="container">
+            <h1>U heeft momenteel niks in uw wensenlijst!</h1>
+    </div>
+</div>

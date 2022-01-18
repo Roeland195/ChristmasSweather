@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs';
 import { HttpSercive } from '../http.service';
 import { UserModel } from './user.model';
 
@@ -15,8 +16,9 @@ export class authenticationService{
   constructor(private http: HttpSercive, private router : Router) { }
 
   register(user: UserModel) :void{
-    this.http.post(this.endpoint, user, (data) =>{
+    this.http.post("/Register", user, (data) =>{
         console.log("DATA: "+data);
+      }),tap(resData =>{
       });
   }
 

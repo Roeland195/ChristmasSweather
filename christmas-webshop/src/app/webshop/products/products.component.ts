@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductModel } from './product.model';
 import { productService } from './product.service';
 
@@ -7,7 +7,7 @@ import { productService } from './product.service';
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss']
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent implements OnInit, OnDestroy {
   products: ProductModel[] = [];
   size : string[]= [];
   sizeExist = false;
@@ -18,6 +18,9 @@ export class ProductsComponent implements OnInit {
     this.ProductService.getAllProducts('',(data: ProductModel[])=>{
       this.fillProductArray(data);
       this.products = this.ProductService.products;
+      this.ProductService.productsListChanged.subscribe(value =>{
+        this.products = this.ProductService.products;
+      });
     });
   }
 
@@ -39,5 +42,9 @@ export class ProductsComponent implements OnInit {
       }
       this.sizeExist = false;
     })
+  }
+
+  ngOnDestroy(): void {
+    this.ProductService.setCookies();
   }
 }

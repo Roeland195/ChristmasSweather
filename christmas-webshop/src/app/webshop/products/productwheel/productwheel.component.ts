@@ -10,7 +10,6 @@ import { productService } from '../product.service';
 })
 export class ProductwheelComponent implements OnInit {
   @Input() product: ProductModel | any;
-  
 
   constructor(private router: Router, private productService: productService) { }
 
@@ -18,10 +17,6 @@ export class ProductwheelComponent implements OnInit {
   }
 
   onSingleProduct(){
-    console.log("HERE IS ON SINGLE PRODUCT");
-    
-    console.log("PRODUCT: " +this.product);
-    
     this.productService.setSelectedProduct(this.product);
     this.router.navigate(['/product', this.product.id]);
   }

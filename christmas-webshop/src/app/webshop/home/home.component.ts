@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductModel } from "../products/product.model";
 import {productService} from "../products/product.service";
 
@@ -7,7 +7,7 @@ import {productService} from "../products/product.service";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   products: ProductModel[] = [];
   imageproducts: ProductModel[] = [];
 
@@ -30,5 +30,9 @@ export class HomeComponent implements OnInit {
     data.forEach((product)=>{
       this.ProductService.pushProduct(product);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.ProductService.setCookies();
   }
 }
