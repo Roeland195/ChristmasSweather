@@ -1,0 +1,121 @@
+<div class="container">
+    <div class="register-form">
+        <form (ngSubmit)="onSubmit(form)" #form="ngForm">
+        <h1>NIEUW ACCOUNT AANMAKEN</h1>
+        <hr>
+            <div class="form-group">
+                <div class="customer-details">
+                <h3>Persoonlijke gegevens</h3>
+                <label for="firstname">Voornaam: </label>
+                <input
+                ngModel
+                required
+                type="text"
+                id="firstname"
+                name="firstname"
+                class="form-control">
+
+                    <label for="lastname">Achternaam: </label>
+                    <input
+                    ngModel
+                    required
+                    type="text"
+                    id="lastname"
+                    name="lastname"
+                    class="form-control">
+    
+                    <label for="email">Email: </label>
+                    <input
+                    ngModel
+                    required
+                    email
+                    type="text"
+                    id="email"
+                    name="email"
+                    class="form-control">
+                <h3>Inloggegevens</h3>
+                    <label for="password">Wachtwoord: </label>
+                    <input 
+                    ngModel
+                    required
+                    minlength="6"
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="form-control">
+    
+                    <label for="passwordCorrect">Bevestig Wachtwoord: </label>
+                    <input 
+                    ngModel
+                    required
+                    minlength="6"
+                    type="password"
+                    id="passwordCorrect"
+                    name="passwordCorrect"
+                    class="form-control">
+
+                    <span *ngIf="!passwordSame && formIsFilled" style="color: red;">Wachtwoorden komen niet overeen</span>
+                </div>
+
+               <div class="address-details">
+                <h3>Address gegevens</h3>
+                <label for="country">Land: </label>
+                <input 
+                ngModel
+                required
+                type="text"
+                id="country"
+                name="country"
+                class="form-control">
+
+                <label for="city">Stad: </label>
+                <input 
+                ngModel
+                required
+                type="text"
+                id="city"
+                name="city"
+                class="form-control">
+
+                <label for="street">Straat: </label>
+                <input 
+                ngModel
+                required
+                type="text"
+                id="street"
+                name="street"
+                class="form-control">
+
+                <label for="housenumber">Huisnummer: </label>
+                <input 
+                ngModel
+                required
+                type="number"
+                id="housenumber"
+                name="housenumber"
+                class="form-control">
+
+                <label for="addons">Extra: </label>
+                <input 
+                ngModel
+                type="text"
+                id="addons"
+                name="addons"
+                class="form-control">
+               </div>
+
+                <button 
+                style="width: 30%;"
+                class="btn btn-primary"
+                (click)="onBack()"
+                type="button">&leftarrow; Terug</button>
+
+                <button 
+                [disabled]="!form.valid"
+                class="btn btn-primary"
+                type="submit">Account aanmaken</button>
+            </div>
+        </form>
+</div>
+
+

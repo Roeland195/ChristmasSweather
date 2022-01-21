@@ -1,0 +1,87 @@
+<div class="float-container">
+    <h1>Voeg Product toe</h1>
+    <div>
+    <button class="btn" (click)="addNew()">Nieuw Product</button>
+    </div>
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <section class="form-child">
+            <div class="product-content">
+                <div class="form-group">
+                <h3>Naam:</h3>
+                <input 
+                    type="text"
+                    id="name"
+                    formControlName="name">
+                </div>
+     
+                <hr>
+                <h3>Beschrijving:</h3>
+                <textarea 
+                    type="textarea"
+                    id="description"
+                    formControlName="description"></textarea>
+
+                <hr>
+                <h3>Afbeelding:</h3>
+                <input 
+                    type="text"
+                    id="image"
+                    formControlName="imagePath">
+            </div>
+
+            <div class="product-content">
+                <h3>Bedrag:</h3>
+                <input 
+                    type="number"
+                    min="0.00"
+                    max="10000.00"
+                    step="0.01"
+                    id="price"
+                    formControlName="price">
+
+                <hr>
+                <h3>Kleur:</h3>
+                <input 
+                    type="text"
+                    id="color"
+                    formControlName="color">
+
+                <hr>
+                <h3>Geslacht:</h3>
+                <input 
+                    class="radioInput" 
+                    type="radio" 
+                    id="sex" 
+                    value="man"
+                    formControlName="sex">
+
+                <label for="sex">Man</label><br>
+                <input 
+                    class="radioInput"
+                    type="radio"
+                    id="sex" 
+                    value="woman"
+                    formControlName="sex">
+                <label for="sex">vrouw</label>
+
+                <hr>
+                <h3>maat:</h3>
+                <input
+                    type="text"
+                    id="size"
+                    formControlName="size">             
+            </div>
+        </section>
+        <section class="form-child">
+            <div>
+                <img src="{{productImage}}" alt="ther is nothing">
+            </div>
+            <div class="buttons_container">
+                <button type="submit" class="btn btn-primary">Maak Product!</button>
+                <button type="button" (click)="onDelete()" class="btn btn-danger">Delete Product!</button>
+            </div>
+
+        </section>
+
+    </form>
+</div>

@@ -1,1 +1,53 @@
-<p>header works!</p>
+<nav *ngIf='!onAdmin'>
+    <div class="logo">
+        <a routerLink="/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDxMs92k-SF3VF404U2NcJHk8_yZwCDIqJNg&usqp=CAU" 
+        alt="LOGO VAN KERST TRUI"></a>
+    </div>
+
+    <div class="navbar-container">
+         <ul>
+            <li routerLinkActive="active"><a routerLink="/products">Producten</a></li>
+            <li routerLinkActive="active" *ngIf="role != ''"><a routerLink="/shoplist">WinkelWagen</a></li>
+            <li routerLinkActive="active"><a routerLink="/favorite">Favoriet</a></li>
+            <li routerLinkActive="active" *ngIf="role == ''"><a routerLink="/auth">InLoggen</a></li>
+            <li routerLinkActive="active" *ngIf="role != ''"><a (click)="logout()">Uitloggen</a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-container-mobile">
+        <ul>
+           <!-- *ngIf="role != ''" -->
+           <li routerLinkActive="active"><a routerLink="/products">Producten</a></li>
+           <li routerLinkActive="active" *ngIf="role != ''"><a routerLink="/shoplist">WinkelWagen</a></li>
+           <li routerLinkActive="active"><a routerLink="/favorite">Favoriet</a></li>
+           <li routerLinkActive="active" *ngIf="role == ''"><a routerLink="/auth">InLoggen</a></li>
+           <li routerLinkActive="active" *ngIf="role != ''"><a (click)="logout()">Uitloggen</a></li>
+       </ul>
+   </div>
+</nav>
+
+<nav *ngIf='onAdmin'>
+    <div class="logo">
+        <a routerLink="/">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSDxMs92k-SF3VF404U2NcJHk8_yZwCDIqJNg&usqp=CAU" 
+        alt="LOGO VAN KERST TRUI"></a>
+    </div>
+
+    <div class="navbar-container">
+         <ul>
+            <li routerLinkActive="active"><a routerLink="admin/edit">Producten</a></li>
+            <li routerLinkActive="active"><a routerLink="admin/orders">Orders</a></li>
+            <li><a (click)="logout()">Uitloggen</a></li>
+        </ul>
+    </div>
+
+    <div class="navbar-container-mobile">
+        <ul>
+           <li routerLinkActive="active"><a routerLink="admin/edit">Producten</a></li>
+           <li routerLinkActive="active"><a routerLink="admin/orders">Orders</a></li>
+           <li><a (click)="logout()">Uitloggen</a></li>
+       </ul>
+   </div>
+</nav>
+

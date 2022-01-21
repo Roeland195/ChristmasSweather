@@ -1,0 +1,13 @@
+<section>
+    <div class="imageHolder">
+        <img src="{{product.image}}" alt="{{product.name}}">
+    </div>
+    <div>
+        <h3>{{product.name}}</h3>
+        <h2>&euro; {{product.price}}</h2>
+    </div>
+    <div class="buttonHolder">
+        <button type="button" class="btn btn-danger" (click)="onRemoveFromShoppingCart()">X</button>
+    </div>
+
+</section>

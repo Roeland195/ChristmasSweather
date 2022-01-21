@@ -1,0 +1,14 @@
+<div class="float-container">
+    <section>
+      <div class="image-container">
+        <app-imagewheel
+        *ngFor="let product of imageproducts"
+        [product]="product"></app-imagewheel>
+      </div>
+    </section>
+    <section class="card-container">
+        <app-productwheel
+        *ngFor="let product of products"
+        [product]="product"></app-productwheel>
+    </section>
+</div>

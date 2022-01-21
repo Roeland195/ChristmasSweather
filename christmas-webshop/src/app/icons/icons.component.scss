@@ -1,0 +1,14 @@
+.button-content{
+    display: grid;
+    grid-template-columns: auto auto;
+    width: 100%;
+
+    .card-button{
+        border: 0;
+        background-color: transparent;
+
+        img{
+            width: 3.5em;
+        }
+    }
+}

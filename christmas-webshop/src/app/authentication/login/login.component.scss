@@ -1,0 +1,58 @@
+.container{
+    margin-top: 5em;
+    margin-bottom: 2em;
+    max-width: 100%;
+    .login-form{
+        background-color: rgb(255, 255, 255);
+        width: 100%;
+        padding: 50px;
+        display: grid;
+        grid-template-columns: auto auto;
+        .form-group{
+            display: grid;
+            grid-template-columns: auto auto;
+            padding: 10px;
+        }
+        form{
+            padding: 10px;
+        }
+        .new-account{
+            padding: 10px;
+        }
+        input{
+            width: 100%;
+        }
+        input.ng-invalid.ng-touched{
+            border: 1px solid red;
+        }
+
+        label{
+            margin-top: 20px;
+        }
+        button{
+            margin: 20px 20px 20px 0;
+            width: 70%;
+        }
+        a{
+            margin: 20px;
+        }
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .container{
+        .login-form{
+            grid-template-columns:  auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 550px){
+    .container{
+        .login-form{
+            .form-group{
+                grid-template-columns: auto;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+<div class="ui card">
+    <div class="image">
+            <img (click)="onSingleProduct()" class="sweather-image" src="{{product.image}}">
+    </div>
+    <div class="content">
+        <h3 (click)="onSingleProduct()">{{product.name}}</h3>
+        <div class="meta">
+        <span class="date">&euro; {{product.price}}</span>
+        </div>
+        <hr>
+        <app-icons [product]="product"></app-icons>
+    </div>
+</div>

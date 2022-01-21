@@ -1,0 +1,103 @@
+.float-container{
+    margin: 0 5%;
+    background-color: white;
+    h1{
+        padding: 50px;
+    }
+    form{
+        .form-child{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            margin-bottom: 100px;
+            img{
+                width: 70%;
+            }
+            div{
+                padding: 5px;
+                width: 100%;
+            }
+            .buttons_container{
+                button{
+                    margin-right: 400px;
+                    width: 50%;
+                    height: 5em;
+                    margin-bottom: 2em;
+                }
+            }
+            
+            .product-content{
+                padding: 30px;
+                input{
+                    margin: 10px;
+                    width: 60%;
+                }
+                .radioInput{
+                    width: 10%;
+                }
+                textarea{
+                    resize: none;
+                    width: 30em;
+                    height: 50%;
+                    padding: 5px;
+                }
+            }
+        }
+
+    }
+}
+
+@media only screen and (max-width: 1840px) {
+    .float-container{
+        form{
+            .form-child{
+                button{
+                    margin-right: 200px;
+                    width: 50%;
+                    height: 5em;
+                } 
+                img{
+                    width: 50%;
+                }
+                .product-content{
+                    input{
+                        width: 90%;
+                        height: 3em;
+                        font-size: 20px;
+                    }
+                    label{
+                        font-size: 30px;
+                    }
+                    textarea{
+                        resize: none;
+                        width: 90%;
+                        height: 300px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1160px) {
+    .float-container{
+        form{
+            .form-child{
+                display: inline;
+                button{
+                    margin: 10px;
+                    width: 50%;
+                    height: 5em;
+                } 
+                img{
+                    width: 50%;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .float-container{
+        margin: 0;
+    }
+}

@@ -1,0 +1,46 @@
+.float-container{
+ margin: 0 20%;
+    section{
+        margin: 30px;
+        text-align: center;
+    }
+    .image-container{
+        display: grid;
+        grid-template-columns: auto auto auto auto auto;
+    }
+
+    .card-container{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+}
+
+@media only screen and (max-width: 1800px){
+    .float-container{
+        margin: 0 20%;
+           section{
+               margin: 30px;
+               text-align: center;
+           }
+           .image-container{
+               display: none;
+           }
+           .card-container{
+            grid-template-columns: auto auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 1300px){
+    .float-container{
+        margin: 0 0%;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .float-container{
+           .card-container{
+            grid-template-columns: auto;
+        }
+    }
+}
