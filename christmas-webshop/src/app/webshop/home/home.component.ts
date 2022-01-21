@@ -15,21 +15,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.ProductService.getAllProducts('',(data: ProductModel[])=>{
-      this.fillProductArray(data);
-      this.products = this.ProductService.products;
-
-      for(let i =0; i< 4; i++){
-        let random = Math.floor(Math.random() * this.products.length);
-        this.imageproducts.push(this.products[random]);
-      }
-    });
-  }
-
-  private fillProductArray(data: ProductModel[]) : void {
-    data.forEach((product)=>{
-      this.ProductService.pushProduct(product);
-    });
+    this.products = this.ProductService.products;
+    this.imageproducts = this.ProductService.imageproducts;
   }
 
   ngOnDestroy(): void {

@@ -24,8 +24,9 @@ export class RegisterComponent implements OnInit {
     this.formIsFilled = true;
     if(form.value.password === form.value.passwordCorrect){
       this.passwordSame = true; 
-      this.user.name = form.value.name;
-      this.user.password = form.value.password;
+      this.user.firstName = form.value.firstname;
+      this.user.lastName = form.value.lastname;
+      this.user.password = this.auth.hashPassword(form.value.password);;
       this.user.email = form.value.email;
       this.user.city = form.value.city;
       this.user.country = form.value.country;

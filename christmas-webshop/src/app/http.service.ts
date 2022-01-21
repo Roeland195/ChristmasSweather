@@ -8,6 +8,7 @@ import { ProductModel } from './webshop/products/product.model';
 })
 export class HttpSercive{
     public static readonly RESPONSE_SUCCESS_CODE ="SUCCESS";
+    public static readonly RESPONSE_FAILURE_CODE = "FAILURE";
     private authenticated = false;
 
     private url: string = "http://localhost:8080";
@@ -16,10 +17,19 @@ export class HttpSercive{
     constructor(private h: HttpClient) {
         this.http = h;
     }
-
-    public get<T>(endpoint : string, implementation : (data : T) => void){
+    public get<T>(endpoint : string, args : Map<string,string>, implementation : (data : T) => void, onFailure: () => void = () =>{}){
         this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) =>{
-            HttpSercive.callImplementation<T>(response, implementation);        
+            console.log(response);
+            
+            HttpSercive.callImplementation<T>(response, implementation, onFailure);        
+        });
+    }
+
+    public getProductsWithOrder<T>(endpoint : string, args : string, implementation : (data : T) => void, onFailure: () => void = () =>{}){
+        this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) =>{
+            console.log(response);
+            
+            HttpSercive.callImplementation<T>(response, implementation, onFailure);        
         });
     }
 
@@ -27,23 +37,29 @@ export class HttpSercive{
         return this.http.get<HttpResponse<T>>(this.url+endpoint);
     }
 
-    public post<T>(endpoint: string, body: T, implementation : (data: T) => void){
+    public post<T>(endpoint: string, body: T, implementation : (data: T) => void, onFailure: () => void){
         this.http.post<HttpResponse<T>>(this.url + endpoint, body).subscribe((response) =>{
-            HttpSercive.callImplementation<T>(response, implementation);
+            HttpSercive.callImplementation<T>(response, implementation, onFailure);
         });
     }
 
-    public put<T>(endpoint : string, body : T, implementation : (data : T) => void) {
-        this.http.put<HttpResponse<T>>(this.url + endpoint, body).subscribe((response) => {
-          HttpSercive.callImplementation<T>(response, implementation);
+    public postWithReturnType<T, R>(endpoint : string, body : T, implementation : (data : R) => void, onFailure : () => void = () => {}) {
+        this.http.post<HttpResponse<R>>(this.url + endpoint, body, ).subscribe((response) => {
+          HttpSercive.callImplementation<R>(response, implementation, onFailure);
         });
       }
 
-    public delete<T>(endpoint : string, body : T, implementation : (data : T) => void) {
+    public put<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure: () => void) {
+        this.http.put<HttpResponse<T>>(this.url + endpoint, body).subscribe((response) => {
+          HttpSercive.callImplementation<T>(response, implementation, onFailure);
+        });
+      }
+
+    public delete<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure: () => void) {
         console.log(body);
         
         this.http.delete<HttpResponse<T>>(this.url + endpoint, {body: body}).subscribe((response) => {
-            HttpSercive.callImplementation<T>(response, implementation);
+            HttpSercive.callImplementation<T>(response, implementation, onFailure);
         });
       }
 
@@ -76,20 +92,18 @@ export class HttpSercive{
         return endpoint;
     }
 
-    private static callImplementation<T>(response : HttpResponse<T>, implementation : (data : T) => void | null) : void {
-        if (response.response !== HttpSercive.RESPONSE_SUCCESS_CODE) {
+    private static callImplementation<T>(response : HttpResponse<T>, implementation : (data : T) => void | null, onFailure : () => void) : void {
+        // if error
+        if (response.response === HttpSercive.RESPONSE_FAILURE_CODE) {
           HttpSercive.onError(response.error);
-        }else{
-            console.log("IT HAS BEEN A SUCCES");
+          onFailure();
         }
-        // @ts-ignore
-      implementation(response);
+        else {
+          if (implementation !== null)
+            implementation(response.data);
+        }
       }
-
       private static onError(message : string) {
-          console.log("SENDING HAS FAILED");
-          
+        console.log(message);
       }
-
-
-}
+    }

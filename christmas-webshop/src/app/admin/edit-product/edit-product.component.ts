@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProductModel } from 'src/app/webshop/products/product.model';
 import { productService } from 'src/app/webshop/products/product.service';
 import { AdminService } from '../Admin.Service';
@@ -19,7 +19,7 @@ export class EditProductComponent implements OnInit {
   editMode = false;
   productId: string = '';
 
-  constructor(private ProductService: productService, private route: ActivatedRoute, private adminService: AdminService) { }
+  constructor(private router: Router ,private ProductService: productService, private route: ActivatedRoute, private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.editMode = false;
@@ -34,6 +34,10 @@ export class EditProductComponent implements OnInit {
         this.initForm();
       }
     );
+  }
+
+  addNew(){
+    this.router.navigate(["/admin/new"]);
   }
 
   private initForm(){
@@ -87,15 +91,14 @@ export class EditProductComponent implements OnInit {
       this.editProduct.sex = this.productForm.value.sex;
       this.editProduct.size = this.productForm.value.size;
       
-      this.adminService.updateProduct(this.editProduct,() =>{});
+      this.adminService.updateProduct(this.editProduct,() =>{}, () =>{});
     }else{
-    this.adminService.addProduct(this.productForm.value,() =>{});
+    this.adminService.addProduct(this.productForm.value,() =>{}, () =>{});
     }
   }
 
   onDelete(){
-    console.log("ERROR");
-    
-    this.adminService.deleteProduct(this.editProduct,() =>{});
+    this.adminService.deleteProduct(this.editProduct,() =>{}, () =>{});
+    this.router.navigate(["/admin/new"]);
   }
 }

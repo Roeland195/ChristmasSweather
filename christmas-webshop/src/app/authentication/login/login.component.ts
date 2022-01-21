@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 import { authenticationService } from '../authentication.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { authenticationService } from '../authentication.service';
 })
 export class LoginComponent implements OnInit {
   @ViewChild('form') loginForm!: NgForm;
-  credential = {email: '', password: ''};
+  credential = {username: '', password: ''};
+  loginSucceded = false;
 
   constructor(private router: Router, private auth: authenticationService) { }
 
@@ -18,10 +20,26 @@ export class LoginComponent implements OnInit {
   }
 
   login(Form: NgForm){
-    this.credential.email = Form.value.email;
-    this.credential.password = Form.value.password;
+    let email = Form.value.email;
+    let password = Form.value.password;
 
-    this.auth.authenticate(this.credential);
+    this.auth.authenticate(email, password, (data) => {
+      if(data !== null){
+        localStorage.setItem("token", data.token);
+        this.router.navigate(['/products']);
+        const token = localStorage.getItem('token');
+          const tokenPayload: any = jwt_decode(token!);
+          let role = tokenPayload.role;
+          this.auth.role.next(role);
+          this.auth.userEmail = data.email;
+      }else{
+        this.loginSucceded = true;
+      }
+     }, ()=>{});
+  }
+
+  onKeyUp(){
+    this.loginSucceded = false;
   }
 
   onRegister(){

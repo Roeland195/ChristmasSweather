@@ -27,6 +27,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { ShoppingCartItemComponent } from './webshop/shoplist/shopping-cart-item/shopping-cart-item.component';
 import { FavoriteItemComponent } from './webshop/likedlist/favorite-item/favorite-item.component';
 import { LikedlistComponent } from './webshop/likedlist/likedlist.component';
+import { LoadingComponent } from './webshop/home/loading/loading.component';
+import { OrderOverViewComponent } from './admin/order-over-view/order-over-view.component';
+import { OrderComponent } from './admin/order/order.component';
+import { OrderProductComponent } from './admin/order/order-product/order-product.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import { LikedlistComponent } from './webshop/likedlist/likedlist.component';
     ShoppingCartItemComponent,
     FavoriteItemComponent,
     LikedlistComponent,
-  ],
+    LoadingComponent,
+    OrderOverViewComponent,
+    OrderComponent,
+    OrderProductComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

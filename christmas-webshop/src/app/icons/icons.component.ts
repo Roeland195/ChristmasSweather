@@ -32,7 +32,7 @@ export class IconsComponent implements OnInit {
 
   onlike(){
     this.inCookie = false;
-    this.productService.cookieProductShoppingCart.forEach((product)=>{
+    this.productService.cookieProductWishList.forEach((product)=>{
       if(product.id === this.product.id){
         this.inCookie = true;
       }

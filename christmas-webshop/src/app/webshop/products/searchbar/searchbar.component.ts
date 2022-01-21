@@ -34,7 +34,7 @@ export class SearchbarComponent implements OnInit {
 
   setFilterdProducts(){
     this.productService.allProducts.forEach((value)=>{
-      if(this.checkbox.length > 0 && this.sex.length > 0){
+      if(this.checkbox.length > 0 || this.sex.length > 0){
         if(this.checkbox.length > 0){
           this.checkbox.forEach((checkboxValue)=>{
             if(checkboxValue === value.size.toUpperCase()){

@@ -2,5 +2,16 @@
     margin: 0 5%;
     background-color: white;
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
+}
+
+@media only screen and (max-width: 1160px){
+    .float-container{
+        margin: 0%;
+        grid-template-columns: 1fr;
+    }
+
+    .productwheel{
+        width: 95%;
+    }
 }

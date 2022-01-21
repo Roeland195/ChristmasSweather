@@ -10,11 +10,12 @@ import { filter } from 'rxjs';
 })
 export class HeaderComponent implements OnInit {
   onAdmin = false;
+  role: string = "";
 
-  constructor(private auth: authenticationService, private route: Router) { }
+  constructor(private auth: authenticationService, private router: Router) { }
 
   ngOnInit(): void {
-    this.route.events
+    this.router.events
     .pipe(filter(event => event instanceof NavigationEnd))
     // @ts-ignore
     .subscribe((event: NavigationEnd) => {
@@ -24,10 +25,14 @@ export class HeaderComponent implements OnInit {
         this.onAdmin = false;
       }
     });
+    this.auth.role.subscribe((data)=>{
+      this.role = data;
+    });
   }
 
   logout(){
     this.auth.logout();
+    this.router.navigate(["/"]);
   }
 
 }

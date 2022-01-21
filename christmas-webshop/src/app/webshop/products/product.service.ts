@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
+import { authenticationService } from 'src/app/authentication/authentication.service';
 import {HttpSercive} from "../../http.service";
+import { AccountShoplist } from '../shoplist/accountShopList.model';
 import {ProductModel} from "./product.model";
 
 @Injectable({
@@ -9,11 +11,14 @@ import {ProductModel} from "./product.model";
 })
 export class productService{
   productsListChanged: Subject<boolean> = new Subject<boolean>();
+  shoplistAccount: AccountShoplist = new AccountShoplist;
+
 
   cookieProductShoppingCart: ProductModel[] =[];
   cookieProductWishList: ProductModel[] =[];
 
   allProducts: ProductModel[] = [];
+  imageproducts: ProductModel[] = [];
   products: ProductModel[] = [];
   size: string[] = [];
   color: string[] = [];
@@ -21,21 +26,26 @@ export class productService{
 
   selectedProduct : ProductModel = new ProductModel;
 
-  constructor(private http: HttpSercive, private cookieService: CookieService) { }
+  constructor(private http: HttpSercive, private cookieService: CookieService, private auth:authenticationService) { }
 
-  getAllProducts(extra: string ,implementation: (data: ProductModel[]) => void) : void{
+  getAllProducts(extra: string ,implementation: (data: ProductModel[]) => void, onFailure: () =>void) : void{
     this.allProducts = [];
     this.products = [];
     this.productsListChanged.next(false);
-    this.http.get<ProductModel[]>("/Product", implementation);
+    let map = new Map<string, string>();
+    this.http.get<ProductModel[]>("/Product",map ,implementation, onFailure);
   }
 
-  addToShoppingCart() : void{
+  addToShoppingCart( onFailure: () =>void) : void{
     console.log("HERE");
+    this.shoplistAccount.products = this.cookieProductShoppingCart;
+    this.shoplistAccount.userId = this.auth.userEmail;
+    console.log(this.shoplistAccount);
     
-    this.http.post("/Wishlist", this.cookieProductShoppingCart, (data) =>{
+
+    this.http.post("/Wishlist", this.shoplistAccount, (data) =>{
       console.log("DATA: "+data);
-    });
+    }, onFailure);
   }
 
   pushProduct(product: ProductModel){
@@ -50,12 +60,12 @@ export class productService{
   }
 
   setCookies(){
-    this.cookieService.set('christmasSweather-product-shoppingcart', JSON.stringify(this.cookieProductShoppingCart));
-    this.cookieService.set('christmasSweather-product-like', JSON.stringify(this.cookieProductWishList));  
+    localStorage.setItem('shoppingcart', JSON.stringify(this.cookieProductShoppingCart));
+    localStorage.setItem('wishlist', JSON.stringify(this.cookieProductWishList));
   }
 
   getCookies(){
-    this.cookieProductShoppingCart = JSON.parse(this.cookieService.get('christmasSweather-product-shoppingcart'));
-    this.cookieProductWishList = JSON.parse(this.cookieService.get('christmasSweather-product-like'));
+    this.cookieProductShoppingCart = JSON.parse(localStorage.getItem('shoppingcart') ||'{}');
+    this.cookieProductWishList = JSON.parse(localStorage.getItem('wishlist') || '{}');
   }
 }

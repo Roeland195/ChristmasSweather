@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductModel } from 'src/app/webshop/products/product.model';
+import { AdminService } from '../Admin.Service';
 
 @Component({
   selector: 'app-overview',
@@ -10,9 +11,9 @@ import { ProductModel } from 'src/app/webshop/products/product.model';
 export class OverviewComponent implements OnInit {
   @Input() product: ProductModel | any;
 
-  constructor(private router: Router) { }
-
+  constructor(private router: Router,private adminService: AdminService) { }
   ngOnInit(): void {
+  
   }
 
   onProductSelected(){

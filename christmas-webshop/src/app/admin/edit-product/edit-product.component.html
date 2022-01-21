@@ -1,5 +1,8 @@
 <div class="float-container">
     <h1>Voeg Product toe</h1>
+    <div>
+    <button class="btn" (click)="addNew()">Nieuw Product</button>
+    </div>
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
         <section class="form-child">
             <div class="product-content">
@@ -73,9 +76,9 @@
             <div>
                 <img src="{{productImage}}" alt="ther is nothing">
             </div>
-            <div>
+            <div class="buttons_container">
                 <button type="submit" class="btn btn-primary">Maak Product!</button>
-                <button type="button" (click)="onDelete()" class="btn btn-primary">Delete Product!</button>
+                <button type="button" (click)="onDelete()" class="btn btn-danger">Delete Product!</button>
             </div>
 
         </section>

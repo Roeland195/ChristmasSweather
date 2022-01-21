@@ -1,6 +1,7 @@
 export class UserModel{
     id: string;
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
     country: string;
@@ -12,7 +13,8 @@ export class UserModel{
     constructor(
     ){
       this.id = '';
-      this.name = '';
+      this.firstName = '';
+      this.lastName = '';
       this.password = '';
       this.email = '';
       this. city = '';

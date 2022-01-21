@@ -6,13 +6,22 @@
             <div class="form-group">
                 <div class="customer-details">
                 <h3>Persoonlijke gegevens</h3>
-                    <label for="naam">Naam: </label>
+                <label for="firstname">Voornaam: </label>
+                <input
+                ngModel
+                required
+                type="text"
+                id="firstname"
+                name="firstname"
+                class="form-control">
+
+                    <label for="lastname">Achternaam: </label>
                     <input
                     ngModel
                     required
                     type="text"
-                    id="naam"
-                    name="naam"
+                    id="lastname"
+                    name="lastname"
                     class="form-control">
     
                     <label for="email">Email: </label>
