@@ -1,9 +1,12 @@
-<div class="product-container">
+<div class="container">
     <div class="searchbar-left">
         <app-searchbar></app-searchbar>
     </div>
 
     <div class="product-child">
-        <app-productwheel class="card-container"></app-productwheel>
+        <div class="card-container">
+        <app-productwheel *ngFor="let product of products"
+        [product]="product"></app-productwheel>
+        </div>
     </div>
 </div>

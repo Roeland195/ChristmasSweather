@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="login-form">
+        <form (ngSubmit)="login(form)" #form="ngForm">
+        <h2>Geregistreerde Klanten</h2>
+        <hr>
+            <div class="form-group">
+                <label for="email">Email: </label>
+                <input
+                (keyup)="onKeyUp()"
+                ngModel
+                required
+                email
+                type="text"
+                id="email"
+                name="email"
+                class="form-control">
+
+                <label for="password">Wachtwoord: </label>
+                <input 
+                (keyup)="onKeyUp()"
+                ngModel
+                required
+                minlength="6"
+                type="password"
+                id="password"
+                name="password"
+                class="form-control">
+
+                <a>Wachtwoord vergeten?</a>
+
+                <button 
+                [disabled]="!form.valid"
+                class="btn btn-primary"
+                type="submit">Login</button>
+            </div>
+        </form>
+
+        <div class="new-account">
+            <h2>Nieuwe Klanten</h2>
+            <hr>
+            <p>Bent u nog geen klant bij ons? klik dan op deze knop op een account te maken.
+                met een account kunnen wij uw winkelmand beter naar uw wens maken.
+            </p>
+            <button 
+            class="btn btn-primary"
+            (click)="onRegister()"
+            type="button">Account aanmaken</button>
+
+        <div class="alert alert-danger" *ngIf="loginSucceded">Uw email of Wachtwoord klopt niet!?</div>
+
+    </div>
+</div>
+
+

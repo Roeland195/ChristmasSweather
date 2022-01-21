@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductModel } from '../product.model';
+import { productService } from '../product.service';
 
 @Component({
   selector: 'app-productwheel',
@@ -6,10 +9,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./productwheel.component.scss']
 })
 export class ProductwheelComponent implements OnInit {
+  @Input() product: ProductModel | any;
 
-  constructor() { }
+  constructor(private router: Router, private productService: productService) { }
 
   ngOnInit(): void {
+  }
+
+  onSingleProduct(){
+    this.productService.setSelectedProduct(this.product);
+    this.router.navigate(['/product', this.product.id]);
   }
 
 }

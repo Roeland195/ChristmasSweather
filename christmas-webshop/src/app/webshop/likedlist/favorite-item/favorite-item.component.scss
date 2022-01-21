@@ -1,0 +1,52 @@
+section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-bottom: 1px solid gray;
+    text-align: left;
+    padding: 4em;
+    .imageHolder{
+        img{
+            height: 200px;
+        }
+    }
+    h3{
+        width: 100%;
+    }
+    .buttonHolder{
+        text-align: right;
+        padding-top: 50%;
+        button{
+            width: 4em;
+        }
+        img{
+            margin: 10px;
+            width: 3.5em;
+        }
+    }
+}
+
+@media only screen and (max-width: 780px){
+    section{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        border-bottom: 1px solid gray;
+        text-align: left;
+        .imageHolder{
+            img{
+                height: 200px;
+            }
+        }
+        .buttonHolder{
+            grid-column-start: 2;
+            text-align: center;
+            width: 100%;
+            padding: 0;
+            button{
+                width: 4em;
+            }
+            img{
+                width: 3.5em;
+            }
+        }
+    }
+}

@@ -1,1 +1,20 @@
-<p>product works!</p>
+<div class="float-container">
+    <section class="product-child">
+        <img src="{{product.image}}" alt="Product.image">
+        <h5>{{product.name}}</h5>
+    </section>
+
+    <section class="product-child">
+        <h1><b>{{product.name}}</b></h1>
+        <p>{{product.description}}</p>
+        <p><strong>Kleur:</strong> {{product.color}}</p>
+        <p><strong>Beschikbaar:</strong> {{product.avalable}}</p>
+        <p><strong>Geslacht:</strong> {{product.sex}}</p>
+        <p><strong>Maat:</strong> {{product.size}}</p>
+        <h3><b>&euro;{{product.price}}</b></h3>
+
+        <div>
+            <app-icons [product]="product"></app-icons>
+        </div>
+    </section>
+</div>

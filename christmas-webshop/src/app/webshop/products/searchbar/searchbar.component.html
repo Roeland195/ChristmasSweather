@@ -1,1 +1,28 @@
-<p>searchbar works!</p>
+<form (ngSubmit)="submit(form)" #form="ngForm">
+    <button class="btn btn-primary" type="submit">Filter</button>
+    <button class="btn btn-primary" (click)="clearFilter()" type="button">Leeg Filter</button>
+    <!-- Totaal -->
+    <!-- <hr>
+    <label for="Price">Total:</label>
+    <input  ngModel type="number" name="price" min="0" max="1000" step="0.01"> -->
+    <!-- Maat -->
+    <hr>
+    <label for="size">Maat:</label><br>
+    <div *ngFor="let maat of size">
+        <input (click)="checkBoxFilter($event)" class="size" ngModel type="checkbox" id="{{maat}}" name="size" value="{{maat}}">
+        <label for="size"> {{maat}}</label><br>
+    </div>
+    <!-- Beschikbaar -->
+    <hr>
+    <label for="avalable">Beschikbaar:</label><br>
+    <input ngModel type="checkbox" id="avalable" name="avalable" value="true">
+    <label for="avalable">Ja</label><br>
+    <!-- Geslacht -->
+    <hr>
+    <label for="sex">Geslacht:</label><br>
+    <input (click)="checkBoxFilter($event)" ngModel type="checkbox" id="sex" name="sex" value="man">
+    <label for="sex"> Man</label><br>
+
+    <input (click)="checkBoxFilter($event)" ngModel type="checkbox" id="sex" name="sex" value="woman">
+    <label for="sex"> Vrouw</label><br>
+</form>

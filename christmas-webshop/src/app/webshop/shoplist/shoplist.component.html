@@ -1,1 +1,18 @@
-<p>shoplist works!</p>
+<div class="shopping-cart">
+<h3>Winkelwagen:</h3><br>
+<p>Totaal producten:</p><h3>{{TotalProducts}}</h3>
+<p>Totaal bedrag:</p><h3>&euro; {{TotalAmount}}</h3>
+<button class="btn" (click)="orderProducts()">Bestell</button>
+<br>
+</div>
+
+<div class="container">
+        <app-shopping-cart-item *ngFor="let product of shoppingCartProducts"
+        [product]="product"></app-shopping-cart-item>
+</div>
+
+<div *ngIf="shoppingCartProducts.length === 0">
+        <div class="container">
+                <h1>U heeft momenteel geen producten in de winkelwagen</h1>
+        </div>
+</div>

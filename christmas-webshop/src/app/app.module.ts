@@ -14,7 +14,23 @@ import { SearchbarComponent } from './webshop/products/searchbar/searchbar.compo
 import { ProductwheelComponent } from './webshop/products/productwheel/productwheel.component';
 import { ImagewheelComponent } from './webshop/products/imagewheel/imagewheel.component';
 import {productService} from "./webshop/products/product.service";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { IconsComponent } from './icons/icons.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { AdminComponent } from './admin/admin.component';
+import { OverviewComponent } from './admin/overview/overview.component';
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { AdminService } from './admin/Admin.Service';
+import { CookieService } from 'ngx-cookie-service';
+import { ShoppingCartItemComponent } from './webshop/shoplist/shopping-cart-item/shopping-cart-item.component';
+import { FavoriteItemComponent } from './webshop/likedlist/favorite-item/favorite-item.component';
+import { LikedlistComponent } from './webshop/likedlist/likedlist.component';
+import { LoadingComponent } from './webshop/home/loading/loading.component';
+import { OrderOverViewComponent } from './admin/order-over-view/order-over-view.component';
+import { OrderComponent } from './admin/order/order.component';
+import { OrderProductComponent } from './admin/order/order-product/order-product.component';
 
 @NgModule({
   declarations: [
@@ -27,15 +43,30 @@ import {FormsModule} from "@angular/forms";
     HomeComponent,
     SearchbarComponent,
     ProductwheelComponent,
-    ImagewheelComponent
-  ],
+    ImagewheelComponent,
+    IconsComponent,
+    AuthenticationComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminComponent,
+    OverviewComponent,
+    EditProductComponent,
+    ShoppingCartItemComponent,
+    FavoriteItemComponent,
+    LikedlistComponent,
+    LoadingComponent,
+    OrderOverViewComponent,
+    OrderComponent,
+    OrderProductComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [productService],
+  providers: [productService, AdminService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
