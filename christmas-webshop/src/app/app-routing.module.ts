@@ -19,7 +19,7 @@ export const routes: Routes = [
   {path: 'christmasSweather', component: HomeComponent},
   {path: 'products', component: ProductsComponent},
   {path: 'product/:name', component: ProductComponent},
-  {path: 'shoplist', component: ShoplistComponent, canActivate: [RoleGuardService], data: {expectedRole: "ADMIN"||"USER"}},
+  {path: 'shoplist', component: ShoplistComponent, canActivate: [RoleGuardService], data: {expectedRole: "USER"}},
   {path: 'favorite', component: LikedlistComponent},
 
   {path: 'auth', component: AuthenticationComponent, children:[
