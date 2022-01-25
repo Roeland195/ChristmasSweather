@@ -34,7 +34,8 @@ export const routes: Routes = [
     {path: 'edit', component: EditProductComponent},
     {path: ':id/edit', component: EditProductComponent},
     {path: 'new', component: EditProductComponent},
-  ],canActivate: [RoleGuardService], data: {expectedRole: "ADMIN"}
+  ]
+  // ,canActivate: [RoleGuardService], data: {expectedRole: "ADMIN"}
 }
 ];
 
