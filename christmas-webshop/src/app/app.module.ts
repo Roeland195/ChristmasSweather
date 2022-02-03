@@ -35,6 +35,7 @@ import { OrderProductComponent } from './admin/order/order-product/order-product
 @NgModule({
   declarations: [
     AppComponent,
+
     HeaderComponent,
     WebshopComponent,
     ProductsComponent,

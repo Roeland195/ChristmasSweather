@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", data.token);
         this.router.navigate(['/products']);
         const token = localStorage.getItem('token');
-          const tokenPayload: any = jwt_decode(token!);
-          let role = tokenPayload.role;
-          this.auth.role.next(role);
-          this.auth.userEmail = data.email;
+        const tokenPayload: any = jwt_decode(token!);
+        let role = tokenPayload.role;
+        this.auth.role.next(role);
+        this.auth.userEmail = data.email;
       }else{
         this.loginSucceded = true;
       }
