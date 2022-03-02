@@ -11,7 +11,9 @@ export class HttpSercive{
     public static readonly RESPONSE_FAILURE_CODE = "FAILURE";
     private authenticated = false;
 
+//     private url: string = "https://still-forest-71875.herokuapp.com";
     private url: string = "https://still-forest-71875.herokuapp.com";
+
     private http : HttpClient;
 
     constructor(private h: HttpClient) {
@@ -20,16 +22,16 @@ export class HttpSercive{
     public get<T>(endpoint : string, args : Map<string,string>, implementation : (data : T) => void, onFailure: () => void = () =>{}){
         this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) =>{
             console.log(response);
-            
-            HttpSercive.callImplementation<T>(response, implementation, onFailure);        
+
+            HttpSercive.callImplementation<T>(response, implementation, onFailure);
         });
     }
 
     public getProductsWithOrder<T>(endpoint : string, args : string, implementation : (data : T) => void, onFailure: () => void = () =>{}){
         this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) =>{
             console.log(response);
-            
-            HttpSercive.callImplementation<T>(response, implementation, onFailure);        
+
+            HttpSercive.callImplementation<T>(response, implementation, onFailure);
         });
     }
 
@@ -57,7 +59,7 @@ export class HttpSercive{
 
     public delete<T>(endpoint : string, body : T, implementation : (data : T) => void, onFailure: () => void) {
         console.log(body);
-        
+
         this.http.delete<HttpResponse<T>>(this.url + endpoint, {body: body}).subscribe((response) => {
             HttpSercive.callImplementation<T>(response, implementation, onFailure);
         });
@@ -68,7 +70,7 @@ export class HttpSercive{
         const headers = new HttpHeaders(credentials ? {
             authorization : 'Basic ' + btoa(credentials.email + ':' + credentials.password)
         } : {});
-    
+
         this.http.get('user', {headers: headers}).subscribe(response => {
             if (response.valueOf.name) {
                 this.authenticated = true;
@@ -77,7 +79,7 @@ export class HttpSercive{
             }
             return callback && callback();
         });
-    
+
     }
 
 
