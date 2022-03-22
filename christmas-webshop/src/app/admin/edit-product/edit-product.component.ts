@@ -23,12 +23,10 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit(): void {
     this.editMode = false;
-    console.log("hello");
 
-    this.route.params    
+    this.route.params
     .subscribe(
       (params: Params) =>{
-        console.log( "LOG: "+params['id']);
         this.productId = params['id'];
         this.editMode = params['id'] !=null;
         this.initForm();
@@ -63,7 +61,7 @@ export class EditProductComponent implements OnInit {
           if(this.editProduct.image !== null){
             this.productImage = this.editProduct.image
           }else{this.productImage = 'https://cdn.pixabay.com/photo/2012/04/02/13/51/cardboard-box-24547_1280.png';}
-          
+
         }
       });
     }
@@ -90,7 +88,7 @@ export class EditProductComponent implements OnInit {
       this.editProduct.color = this.productForm.value.color;
       this.editProduct.sex = this.productForm.value.sex;
       this.editProduct.size = this.productForm.value.size;
-      
+
       this.adminService.updateProduct(this.editProduct,() =>{}, () =>{});
     }else{
     this.adminService.addProduct(this.productForm.value,() =>{}, () =>{});
