@@ -20,6 +20,7 @@ export class HttpSercive{
         this.http = h;
     }
     public get<T>(endpoint : string, args : Map<string,string>, implementation : (data : T) => void, onFailure: () => void = () =>{}){
+        endpoint = this.getEndpointWithArguments(endpoint, args);
         this.http.get<HttpResponse<T>>(this.url + endpoint).subscribe((response) =>{
             console.log(response);
 
