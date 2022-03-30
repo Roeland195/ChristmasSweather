@@ -24,11 +24,11 @@ export class LoginComponent implements OnInit {
     let password = Form.value.password;
 
     this.auth.authenticate(email, password, (data) => {
-      if(data !== null){
+      if(data !== null){        
         localStorage.setItem("token", data.token);
         this.router.navigate(['/products']);
-        const token = localStorage.getItem('token');
-          const tokenPayload: any = jwt_decode(token!);
+        // const token = localStorage.getItem('token');
+          const tokenPayload: any = jwt_decode(data.token);
           let role = tokenPayload.role;
           this.auth.role.next(role);
           this.auth.userEmail = data.email;

@@ -11,7 +11,6 @@ import { LikedlistComponent } from './webshop/likedlist/likedlist.component';
 import { ProductComponent } from './webshop/products/product/product.component';
 import { ProductsComponent } from './webshop/products/products.component';
 import { ShoplistComponent } from './webshop/shoplist/shoplist.component';
-import { OrderOverViewComponent } from './admin/order-over-view/order-over-view.component';
 import { OrderComponent } from './admin/order/order.component';
 
 export const routes: Routes = [

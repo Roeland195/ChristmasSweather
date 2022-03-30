@@ -32,8 +32,8 @@ export class HeaderComponent implements OnInit {
   }
 
   controlToken(): void{
-    this.auth.controlToken(() =>{})
-;  }
+    this.auth.controlToken(() =>{});
+  }
 
   logout(){
     this.auth.logout();

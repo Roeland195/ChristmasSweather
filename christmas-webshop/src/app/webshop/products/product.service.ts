@@ -43,7 +43,7 @@ export class productService{
     console.log(this.shoplistAccount);
     
 
-    this.http.post("/Wishlist", this.shoplistAccount, (data) =>{
+    this.http.post<AccountShoplist>("/Wishlist", this.shoplistAccount, (data) =>{
       console.log("DATA: "+data);
     }, onFailure);
   }
@@ -51,6 +51,11 @@ export class productService{
   pushProduct(product: ProductModel){
     this.allProducts.push(product);
     this.products.push(product);
+  }
+
+  clearProduct(){
+    this.allProducts = [];
+    this.products = [];
   }
 
   setSelectedProduct(product: ProductModel){    
