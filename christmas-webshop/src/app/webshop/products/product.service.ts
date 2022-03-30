@@ -36,7 +36,7 @@ export class productService{
     this.http.get<ProductModel[]>("/Product",map ,implementation, onFailure);
   }
 
-  addToShoppingCart( onFailure: () =>void) : void{
+  addToShoppingCart( onFailure: () => void) : void{
     console.log("HERE");
     this.shoplistAccount.products = this.cookieProductShoppingCart;
     this.shoplistAccount.userId = this.auth.userEmail;
