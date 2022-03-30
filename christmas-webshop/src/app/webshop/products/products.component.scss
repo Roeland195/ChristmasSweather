@@ -1,15 +1,15 @@
 .container{
-    margin: 0 15%;
+    margin: 0 20%;
     display: flex;
         flex-wrap: wrap;
         .searchbar-left{
-            width: 22%;
+            width: 0%;
             padding: 10px;
             background-color: lightgray;
             height: 100%;
         }
         .product-child{
-            width: 78%;
+            width: 100%;
             padding: 10px;
 
             .card-container{

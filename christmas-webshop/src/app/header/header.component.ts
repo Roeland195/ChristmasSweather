@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
     // @ts-ignore
     .subscribe((event: NavigationEnd) => {
       if (event.url.includes('/admin')) {
+        this.controlToken();
         this.onAdmin = true;
       }else {
         this.onAdmin = false;
@@ -28,6 +29,10 @@ export class HeaderComponent implements OnInit {
     this.auth.role.subscribe((data)=>{
       this.role = data;
     });
+  }
+
+  controlToken(): void{
+    this.auth.controlToken(() =>{});
   }
 
   logout(){

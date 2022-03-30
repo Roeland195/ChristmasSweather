@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import {Md5} from "ts-md5";
 import { HttpSercive } from '../http.service';
 import { UserModel } from './user.model';
@@ -34,6 +34,16 @@ export class authenticationService{
     let hash = this.hashPassword(password);
     this.http.postWithReturnType<{username: string, password: string}, {email: string, firstname: string, lastname: string, token: string}>(
       "/authenticate",{username: email, password: hash}, onSucces, onFailure);
+  }
+
+  controlToken( onFailure: () => void){
+    this.http.post<any>("/controltoken",'', (data) =>{
+      console.log("DATA: "+data);
+    }), onFailure;
+
+    // this.http.post<any>("/controltoken",'',(data) =>{
+    //   console.log("Token is geldig");
+    // },onFailure);
   }
    
   
