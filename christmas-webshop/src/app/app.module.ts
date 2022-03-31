@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,6 +31,9 @@ import { LoadingComponent } from './webshop/home/loading/loading.component';
 import { OrderOverViewComponent } from './admin/order-over-view/order-over-view.component';
 import { OrderComponent } from './admin/order/order.component';
 import { OrderProductComponent } from './admin/order/order-product/order-product.component';
+import { HttpClientModule } from '@angular/common/http';
+import { Http_Intercepter } from './Http_intercepter';
+import { JwtInterceptor } from './JwtInterceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { OrderProductComponent } from './admin/order/order-product/order-product
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [productService, AdminService, CookieService],
+  providers: [productService, AdminService, CookieService,
+    {provide: HTTP_INTERCEPTORS, useClass: Http_Intercepter, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

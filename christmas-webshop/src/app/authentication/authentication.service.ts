@@ -37,7 +37,7 @@ export class authenticationService{
   }
 
   controlToken( onFailure: () => void){
-    this.http.post<any>("/controltoken",'', (data) =>{
+    this.http.post<any>("/controltoken", null, (data) =>{
       console.log("DATA: "+data);
     }), onFailure;
 
