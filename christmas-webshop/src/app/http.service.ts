@@ -11,9 +11,7 @@ export class HttpSercive{
     private authenticated = false;
 
     // private url: string = "https://still-forest-71875.herokuapp.com";
-    // private url: string = "http://localhost:8080";
-    private url: string = "http://testchristmassweather.herokuapp.com";
-
+    private url: string = "http://localhost:8080";
 
     private http : HttpClient;
 
