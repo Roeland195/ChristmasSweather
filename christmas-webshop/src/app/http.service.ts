@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpResponse } from './HttpResponse';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { ProductModel } from './webshop/products/product.model';
 
 @Injectable({
     providedIn: 'root'
@@ -11,8 +10,8 @@ export class HttpSercive{
     public static readonly RESPONSE_FAILURE_CODE = "FAILURE";
     private authenticated = false;
 
-    private url: string = "https://still-forest-71875.herokuapp.com";
-    // private url: string = "http://localhost:8080";
+    // private url: string = "https://still-forest-71875.herokuapp.com";
+    private url: string = "http://localhost:8080";
 
     private http : HttpClient;
 
