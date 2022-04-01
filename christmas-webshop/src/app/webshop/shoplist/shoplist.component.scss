@@ -16,4 +16,31 @@
         margin-right: 1em;
         text-align: right;
     }
+    .shoppingcart-button-container{
+        width: 100%;
+        .shopingcart-button{
+            background-color: whitesmoke;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            width: 6em;
+            margin: 1em 20px;
+            border-radius: 50px;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+             outline: none;
+        }
+    }
+    .shoppingcart-button-container :hover{
+        background-color: whitesmoke;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(-3px);
+    }
+    
+    .shoppingcart-button-container :active{
+        background-color: white;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.2);
+        transform: translateY(3px);
+    }
 }
