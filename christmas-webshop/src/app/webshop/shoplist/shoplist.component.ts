@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ModalService } from 'src/app/popup/modal.service';
 import { ProductModel } from '../products/product.model';
 import { productService } from '../products/product.service';
 
@@ -12,7 +13,7 @@ export class ShoplistComponent implements OnInit, OnDestroy {
   TotalAmount: number = 0;
   TotalProducts: number = 0;
 
-  constructor(private productService: productService) { }
+  constructor(private productService: productService, public modalService: ModalService) { }
 
   ngOnInit(): void {
     this.productService.getCookies();
@@ -25,7 +26,10 @@ export class ShoplistComponent implements OnInit, OnDestroy {
 
   orderProducts(){
     this.productService.addToShoppingCart(() =>{
+      console.log('bestelling uitgevoerd');
+      
       this.shoppingCartProducts = [];
+      
     });
   }
 

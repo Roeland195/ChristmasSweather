@@ -85,3 +85,8 @@
 
     </form>
 </div>
+
+<app-popup id="model-1">
+    <p>Product is {{productStatus}}</p>
+    <p><button (click)="modalService.close('modal-1');">sluit bericht</button></p>
+</app-popup>

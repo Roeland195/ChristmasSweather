@@ -1,8 +1,11 @@
 <div class="shopping-cart">
 <h3>Winkelwagen:</h3><br>
 <p>Totaal producten:</p><h3>{{TotalProducts}}</h3>
-<p>Totaal bedrag:</p><h3>&euro; {{TotalAmount}}</h3>
-<button class="btn" (click)="orderProducts()">Bestell</button>
+<p>Totaal bedrag:</p><br><h3>&euro; {{TotalAmount}}</h3>
+<br>
+<div class="shoppingcart-button-container">
+<button class="shopingcart-button" (click)="orderProducts()">Bestell</button>
+</div>
 <br>
 </div>
 
@@ -16,3 +19,8 @@
                 <h1>U heeft momenteel geen producten in de winkelwagen</h1>
         </div>
 </div>
+
+<app-popup id="model-1">
+<p>Uw bestelling is afgehandeld</p>
+<p><button (click)="modalService.close('modal-1');">close modal</button></p>
+</app-popup>
