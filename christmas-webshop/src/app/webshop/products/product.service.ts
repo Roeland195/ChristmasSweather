@@ -11,6 +11,7 @@ import {ProductModel} from "./product.model";
   providedIn: 'root'
 })
 export class productService{
+  productchange: Subject<boolean> = new Subject<boolean>();
   productsListChanged: Subject<boolean> = new Subject<boolean>();
   shoplistAccount: AccountShoplist = new AccountShoplist;
 
@@ -74,5 +75,11 @@ export class productService{
   getCookies(){
     this.cookieProductShoppingCart = JSON.parse(localStorage.getItem('shoppingcart') ||'{}');
     this.cookieProductWishList = JSON.parse(localStorage.getItem('wishlist') || '{}');
+  }
+
+  changedData(change :boolean){
+    if(change = true){
+      this.productchange.next(false);
+    }else{this.productchange.next(true)}
   }
 }

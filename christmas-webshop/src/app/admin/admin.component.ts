@@ -14,6 +14,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   products: ProductModel[] = [];
   orders: OrderModel[] = [];
   onOrders = false;
+  productchange!: Subscription;
   productSub!: Subscription;
 
   constructor(
@@ -23,11 +24,18 @@ export class AdminComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.AdminService.onAdmin = true;
     this.AdminService.getOrders((data: OrderModel[])=>{
-      console.log(data);
       this.orders = data;      
     }, () =>{});
+
+    this.productchange = this.ProductService.productchange.subscribe((data)=>{
+      console.log('activate change');
       this.products = this.ProductService.products;
-      this.productSub = this.AdminService.OnOrder.subscribe((data)=>{
+      
+    })
+
+
+      this.products = this.ProductService.products;
+      this.productSub = this.AdminService.OnOrder.subscribe((data)=>{        
         this.onOrders = data;
       })
   }

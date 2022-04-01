@@ -20,6 +20,8 @@ export class EditProductComponent implements OnInit {
 
   editMode = false;
   productId: string = '';
+  productChange = false;
+
 
   constructor(
     private router: Router,
@@ -76,7 +78,7 @@ export class EditProductComponent implements OnInit {
     this.productForm = new FormGroup({
       'name': new FormControl(productName, Validators.required),
       'description': new FormControl(productDescription, Validators.required),
-      'imagePath': new FormControl(ProductImagePath, Validators.required),
+      'image': new FormControl(ProductImagePath, Validators.required),
       'price': new FormControl(productPrice, Validators.required),
       'color': new FormControl(productColor, Validators.required),
       'sex': new FormControl(productSex, Validators.required),
@@ -90,17 +92,20 @@ export class EditProductComponent implements OnInit {
     if(this.editMode){
       this.editProduct.name = this.productForm.value.name;
       this.editProduct.description = this.productForm.value.description;
-      this.editProduct.image =this.productForm.value.imagePath;
+      this.editProduct.image =this.productForm.value.image;
       this.editProduct.price = this.productForm.value.price;
       this.editProduct.color = this.productForm.value.color;
       this.editProduct.sex = this.productForm.value.sex;
       this.editProduct.size = this.productForm.value.size;
+      console.log(this.editProduct);
+      
 
       this.adminService.updateProduct(this.editProduct,() =>{
         this.openProductPopup('aangepast');
       }, () =>{});
     }else{
     this.adminService.addProduct(this.productForm.value,() =>{
+      this.getProductData();
       this.openProductPopup('toegevoegd');
     }, () =>{});
     }
@@ -108,6 +113,7 @@ export class EditProductComponent implements OnInit {
 
   onDelete(){
     this.adminService.deleteProduct(this.editProduct,() =>{
+      this.getProductData();
       this.openProductPopup('verwijderd');
     }, () =>{});
     this.router.navigate(["/admin/new"]);
@@ -116,5 +122,16 @@ export class EditProductComponent implements OnInit {
   openProductPopup(status: string){
     this.productStatus = status;
     this.modalService.open('modal-1');
+  }
+
+  getProductData(){
+    this.ProductService.getAllProducts('',(data: ProductModel[])=>{
+      this.ProductService.allProducts = data;
+      this.ProductService.products = data;
+      this.productChange != this.productChange;
+      this.ProductService.changedData(this.productChange);
+      console.log("CHAGNED");
+      
+    }, () =>{});
   }
 }

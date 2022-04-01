@@ -13,17 +13,8 @@ export class ModalService{
     }
 
     open(id: string){
-        console.log('Binnenkomend id: ' + id);
-        
         for(let modal of this.modals){
-            console.log("this modal");
-            
-            console.log(modal);
             if(id = modal.id){  
-                console.log('chosen');
-                
-                console.log(modal);
-                              
                 modal.open();
             }
         }
