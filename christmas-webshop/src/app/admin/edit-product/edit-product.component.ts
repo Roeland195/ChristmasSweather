@@ -20,6 +20,8 @@ export class EditProductComponent implements OnInit {
 
   editMode = false;
   productId: string = '';
+  productChange = false;
+
 
   constructor(
     private router: Router,
@@ -101,6 +103,7 @@ export class EditProductComponent implements OnInit {
       }, () =>{});
     }else{
     this.adminService.addProduct(this.productForm.value,() =>{
+      this.getProductData();
       this.openProductPopup('toegevoegd');
     }, () =>{});
     }
@@ -108,6 +111,7 @@ export class EditProductComponent implements OnInit {
 
   onDelete(){
     this.adminService.deleteProduct(this.editProduct,() =>{
+      this.getProductData();
       this.openProductPopup('verwijderd');
     }, () =>{});
     this.router.navigate(["/admin/new"]);
@@ -116,5 +120,16 @@ export class EditProductComponent implements OnInit {
   openProductPopup(status: string){
     this.productStatus = status;
     this.modalService.open('modal-1');
+  }
+
+  getProductData(){
+    this.ProductService.getAllProducts('',(data: ProductModel[])=>{
+      this.ProductService.allProducts = data;
+      this.ProductService.products = data;
+      this.productChange != this.productChange;
+      this.ProductService.changedData(this.productChange);
+      console.log("CHAGNED");
+      
+    }, () =>{});
   }
 }
