@@ -16,7 +16,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   onOrders = false;
   productSub!: Subscription;
 
-  constructor(private AdminService: AdminService, private ProductService: productService) { }
+  constructor(
+    private AdminService: AdminService,
+    private ProductService: productService) { }
 
   ngOnInit(): void {
     this.AdminService.onAdmin = true;

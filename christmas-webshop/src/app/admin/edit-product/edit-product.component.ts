@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ModalService } from 'src/app/popup/modal.service';
 import { ProductModel } from 'src/app/webshop/products/product.model';
 import { productService } from 'src/app/webshop/products/product.service';
 import { AdminService } from '../Admin.Service';
@@ -11,6 +12,7 @@ import { AdminService } from '../Admin.Service';
   styleUrls: ['./edit-product.component.scss']
 })
 export class EditProductComponent implements OnInit {
+  productStatus: string = 'verwijderd';
   productImage: string = 'https://cdn.pixabay.com/photo/2012/04/02/13/51/cardboard-box-24547_1280.png';
   editProduct: ProductModel = new ProductModel;
 
@@ -19,7 +21,12 @@ export class EditProductComponent implements OnInit {
   editMode = false;
   productId: string = '';
 
-  constructor(private router: Router ,private ProductService: productService, private route: ActivatedRoute, private adminService: AdminService) { }
+  constructor(
+    private router: Router,
+    private ProductService: productService,
+    private route: ActivatedRoute,
+    private adminService: AdminService,
+    public modalService: ModalService) { }
 
   ngOnInit(): void {
     this.editMode = false;
@@ -89,14 +96,25 @@ export class EditProductComponent implements OnInit {
       this.editProduct.sex = this.productForm.value.sex;
       this.editProduct.size = this.productForm.value.size;
 
-      this.adminService.updateProduct(this.editProduct,() =>{}, () =>{});
+      this.adminService.updateProduct(this.editProduct,() =>{
+        this.openProductPopup('aangepast');
+      }, () =>{});
     }else{
-    this.adminService.addProduct(this.productForm.value,() =>{}, () =>{});
+    this.adminService.addProduct(this.productForm.value,() =>{
+      this.openProductPopup('toegevoegd');
+    }, () =>{});
     }
   }
 
   onDelete(){
-    this.adminService.deleteProduct(this.editProduct,() =>{}, () =>{});
+    this.adminService.deleteProduct(this.editProduct,() =>{
+      this.openProductPopup('verwijderd');
+    }, () =>{});
     this.router.navigate(["/admin/new"]);
+  }
+
+  openProductPopup(status: string){
+    this.productStatus = status;
+    this.modalService.open('modal-1');
   }
 }

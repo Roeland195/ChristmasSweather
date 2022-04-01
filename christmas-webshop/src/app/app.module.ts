@@ -34,7 +34,7 @@ import { OrderProductComponent } from './admin/order/order-product/order-product
 import { HttpClientModule } from '@angular/common/http';
 import { Http_Intercepter } from './Http_intercepter';
 import { JwtInterceptor } from './JwtInterceptor';
-import { PopupComponent } from './popup/popup.component';
+import { PopupComponent } from './popup/OrderPopup/popup.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { PopupComponent } from './popup/popup.component';
     OrderOverViewComponent,
     OrderComponent,
     OrderProductComponent,
-    PopupComponent
+    PopupComponent,
     ],
   imports: [
     BrowserModule,

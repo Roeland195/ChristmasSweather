@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Subject } from 'rxjs';
 import { authenticationService } from 'src/app/authentication/authentication.service';
+import { ModalService } from 'src/app/popup/modal.service';
 import {HttpSercive} from "../../http.service";
 import { AccountShoplist } from '../shoplist/accountShopList.model';
 import {ProductModel} from "./product.model";
@@ -26,7 +27,10 @@ export class productService{
 
   selectedProduct : ProductModel = new ProductModel;
 
-  constructor(private http: HttpSercive, private cookieService: CookieService, private auth:authenticationService) { }
+  constructor(private http: HttpSercive,
+    private cookieService: CookieService,
+    private auth:authenticationService,
+    public modalService: ModalService) { }
 
   getAllProducts(extra: string ,implementation: (data: ProductModel[]) => void, onFailure: () =>void) : void{
     this.allProducts = [];
@@ -37,7 +41,6 @@ export class productService{
   }
 
   addToShoppingCart( onFailure: () => void) : void{
-    console.log("HERE");
     this.shoplistAccount.products = this.cookieProductShoppingCart;
     this.shoplistAccount.userId = this.auth.userEmail;
     console.log(this.shoplistAccount);
@@ -45,6 +48,7 @@ export class productService{
 
     this.http.post<AccountShoplist>("/Wishlist", this.shoplistAccount, (data) =>{
       console.log("DATA: "+data);
+      this.modalService.open('modal-1');
     }, onFailure);
   }
 
@@ -59,9 +63,7 @@ export class productService{
   }
 
   setSelectedProduct(product: ProductModel){    
-    this.selectedProduct = product;
-    console.log("SELECTED PRODUCT: "+this.selectedProduct);
-    
+    this.selectedProduct = product;    
   }
 
   setCookies(){
