@@ -97,7 +97,6 @@ export class EditProductComponent implements OnInit {
       this.editProduct.color = this.productForm.value.color;
       this.editProduct.sex = this.productForm.value.sex;
       this.editProduct.size = this.productForm.value.size;
-      console.log(this.editProduct);
       
 
       this.adminService.updateProduct(this.editProduct,() =>{
@@ -130,7 +129,6 @@ export class EditProductComponent implements OnInit {
       this.ProductService.products = data;
       this.productChange != this.productChange;
       this.ProductService.changedData(this.productChange);
-      console.log("CHAGNED");
       
     }, () =>{});
   }

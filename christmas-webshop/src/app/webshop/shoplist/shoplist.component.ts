@@ -25,9 +25,7 @@ export class ShoplistComponent implements OnInit, OnDestroy {
   }
 
   orderProducts(){
-    this.productService.addToShoppingCart(() =>{
-      console.log('bestelling uitgevoerd');
-      
+    this.productService.addToShoppingCart(() =>{      
       this.shoppingCartProducts = [];
       
     });

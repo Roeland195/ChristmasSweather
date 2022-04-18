@@ -1,4 +1,3 @@
-import { style } from '@angular/animations';
 import { Component, ElementRef, Input, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ModalService } from '../modal.service';
 
@@ -18,16 +17,12 @@ export class PopupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
-    console.log("ONIT");
     this.element.style.display = 'none';
     if(!this.id){
-      console.error('modal must have an id');
       return;
     }
 
     document.body.appendChild(this.element);
-    console.log(this);
     
 
     this.element.addEventListener('click', (el: { target: { className: string; }; }) => {

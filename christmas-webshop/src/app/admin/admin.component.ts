@@ -28,7 +28,6 @@ export class AdminComponent implements OnInit, OnDestroy {
     }, () =>{});
 
     this.productchange = this.ProductService.productchange.subscribe((data)=>{
-      console.log('activate change');
       this.products = this.ProductService.products;
       
     })

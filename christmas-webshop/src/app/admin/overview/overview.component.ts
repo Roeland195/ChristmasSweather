@@ -17,8 +17,6 @@ export class OverviewComponent implements OnInit {
   }
 
   onProductSelected(){
-    console.log(this.product.id);
-    
     let productId = this.product.id;
     this.router.navigate(['admin',this.product.id,'edit']);
   }
